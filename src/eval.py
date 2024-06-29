@@ -53,6 +53,7 @@ def main() -> None:
     clip_model = CLIPModel.from_pretrained("/kaggle/input/clip-checkpoints-viton/output/clip-finetuned/checkpoint-6300")
     text_encoder = CLIPTextModel(CLIPTextConfig.from_pretrained("/kaggle/input/clip-checkpoints-viton/output/clip-finetuned/checkpoint-6300"))
     text_encoder.text_model = clip_model.text_model
+
     vae = AutoencoderKL.from_pretrained(args.pretrained_model_name_or_path, subfolder="vae", revision=args.revision)
 
     unet = torch.hub.load(dataset=args.dataset, repo_or_dir='aimagelab/multimodal-garment-designer', source='github',
